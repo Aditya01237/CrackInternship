@@ -24,3 +24,30 @@ vector<int> bfsOfGraph(int V, vector<int> adj[]) {
         }
         return ans;
 }
+
+
+
+// Can be done using unordered map
+
+vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+       unordered_map<int, bool> umap;
+       vector<int> ans;
+       queue<int> q;
+       
+       q.push(0);
+       while(!q.empty())
+       {
+           int node=q.front();
+           q.pop();
+           ans.push_back(node);
+           for(auto i: adj[node])
+           {
+               if(umap[i]!=true)
+               {
+                   q.push(i);
+                   umap[i]=true;
+               }
+           }
+       }
+       return ans;
+   }
